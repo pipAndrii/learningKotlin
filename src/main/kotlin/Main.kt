@@ -1,33 +1,25 @@
-import kotlin.math.abs
-import kotlin.math.pow
-
 fun main() {
-    guessMyNum()
-}
-fun guessMyNum()
-{
-    var pcNum = 50
-    println("Hello guess some num from 0 to 100 and I will do magic")
-    var input:String = ""
-    while (input != "S") {
-        pcNum = guess(pcNum,input)
-        println("your num is bigger than $pcNum")
-        println("Enter command\nY - yes\nN - no\nS - stop")
-        input = readln()
-    }
-    println("Thanks for your time")
-}
-fun guess(temp:Int, input:String):Int
-{
-    var pcNum = temp
+    val operation = calculator('/')
 
-    if(input == "Y") {
-        pcNum +=pcNum/2
-    }
-    if(input == "N") {
-        pcNum -= pcNum / 2
-    }
-
-    return pcNum
+    println("enter some nums-> a b ")
+    var a = readln().toDouble()
+    var b = readln().toDouble()
+    println(operation(a,b))
 }
 
+fun calculator(key: Char): (Double, Double) -> Double {
+    return when (key) {
+        '+' -> ::sum
+        '-' -> ::sub
+        '*' -> ::mul
+        '/' -> ::div
+        else -> ::empty
+    }
+}
+
+fun sum(a: Double, b: Double) = a + b
+fun sub(a: Double, b: Double) = a - b
+fun mul(a: Double, b: Double) = a * b
+fun div(a: Double, b: Double) = a / b
+
+fun empty(a: Double, b: Double) = 0.0
