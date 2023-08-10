@@ -9,10 +9,10 @@ fun main() {
 
 fun calculator(key: Char): (Double, Double) -> Double {
     return when (key) {
-        '+' -> fun (a: Double, b: Double) = a + b
-        '-' -> fun (a: Double, b: Double) = a - b
-        '*' -> fun (a: Double, b: Double) = a * b
-        '/' -> fun (a: Double, b: Double) = a / b
-        else -> fun(a: Double, b: Double) = 0.0
+        '+' -> {a, b -> a + b}
+        '-' -> {a, b -> a - b}
+        '*' -> {a, b -> a * b}
+        '/' -> {a, b -> a / b}
+        else -> {a, b -> 0.0}
     }
 }
